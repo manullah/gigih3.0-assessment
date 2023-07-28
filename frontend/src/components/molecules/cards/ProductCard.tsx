@@ -1,4 +1,5 @@
 import { TProductResponse } from "../../../modules/products/entities";
+import { convertIdr } from "../../../utils/string";
 
 type ProductCardProps = {
   title: TProductResponse["title"];
@@ -13,7 +14,7 @@ export const ProductCard: React.FC<ProductCardProps> = (props) => {
     <div className="bg-white rounded-lg shadow-lg cursor-pointer">
       <img
         src={urlThumbnail}
-        className="rounded-t-lg h-52 w-full object-cover"
+        className="rounded-t-lg h-44 w-full object-cover"
       />
 
       <div className="py-3 px-2">
@@ -23,7 +24,7 @@ export const ProductCard: React.FC<ProductCardProps> = (props) => {
         >
           {title}
         </p>
-        <p className="text-gray-600 text-xs font-bold">Rp {price}</p>
+        <p className="text-gray-600 text-xs font-bold">{convertIdr(price)}</p>
       </div>
     </div>
   );

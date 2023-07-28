@@ -27,52 +27,74 @@
           "urlThumbnail": "https://images.tokopedia.net/img/cache/200-square/product-1/2019/9/24/11292/11292_d0a68c90-2207-4d05-a6db-a1f8e3a286e3_640_640.jpg",
           "price": 99000
         }
-      ],
-      "comments": []
+      ]
     },
     {
       "id": 2,
       "title": "PAYDAY SALE DISC 90%",
       "shop": "URBAN&CO OFFICIAL",
       "urlThumbnail": "https://images.tokopedia.net/img/cache/296/jJtrdn/2023/7/27/c6dbfb99-515f-4b69-a35e-b69735006d3a.jpg?ect=4g",
-      "urlVideo": "",
+      "urlVideo": "https://www.youtube.com/embed/KMN544KkIKQ",
       "badges": ["Live"],
       "viewed": 378,
-      "products": [],
-      "comments": []
+      "products": [
+        {
+          "id": 1,
+          "title": "URBAN&CO Basic Flatshoes Zura - BLACK, 41",
+          "urlThumbnail": "https://images.tokopedia.net/img/cache/200-square/VqbcmM/2021/7/5/5c58246d-6b72-4942-90dd-ce0ebd484463.jpg",
+          "price": 161900
+        }
+      ]
     },
     {
       "id": 3,
       "title": "Males Mikir",
       "shop": "Patroman Mall",
       "urlThumbnail": "https://images.tokopedia.net/img/cache/296/jJtrdn/2023/7/25/de5c418d-e1cb-484d-81b1-2c64c191a1a7.jpg?ect=4g",
-      "urlVideo": "",
+      "urlVideo": "https://www.youtube.com/embed/b94lcCd-ovw",
       "badges": ["Explore"],
       "viewed": 2,
-      "products": [],
-      "comments": []
+      "products": []
     },
     {
       "id": 4,
       "title": "YAVA AKHIR BULAN SALE!",
       "shop": "YAVA Official Store",
       "urlThumbnail": "https://images.tokopedia.net/img/cache/296/jJtrdn/2023/7/24/7f704478-b596-453d-a6a2-1986095d7974.jpg?ect=4gg",
-      "urlVideo": "",
+      "urlVideo": "https://www.youtube.com/embed/xcZgVabAX3o",
       "badges": ["Upcoming"],
       "viewed": 2,
-      "products": [],
-      "comments": []
+      "products": [
+        {
+          "id": 1,
+          "title": "Muesli Fruit Seeds 500 gr Sereal Diet Sehat Premium Alami Nutriology - 500 Gram",
+          "urlThumbnail": "https://images.tokopedia.net/img/cache/200-square/VqbcmM/2022/8/11/b3906a27-661b-4970-b8e6-574e059dbc28.jpg",
+          "price": 36000
+        },
+        {
+          "id": 2,
+          "title": "Trail Mix Nutriology 500Gr - Roasted Nuts, Seeds, & Dried Fruits",
+          "urlThumbnail": "https://images.tokopedia.net/img/cache/200-square/VqbcmM/2022/8/2/cd47902c-8d7a-4757-b5d2-c469177d2134.jpg",
+          "price": 65000
+        }
+      ]
     },
     {
       "id": 5,
       "title": "GRATIS ONGKIR TERMURAH acesoris gorden",
       "shop": "BESI GORDEN MURAH",
       "urlThumbnail": "https://images.tokopedia.net/img/generator/LScDrk/f6639884093104e3acdf890349561f84.jpg?ect=4g",
-      "urlVideo": "",
+      "urlVideo": "https://www.youtube.com/embed/T1yumpTM_mA",
       "badges": ["Terbaru"],
       "viewed": 90,
-      "products": [],
-      "comments": []
+      "products": [
+        {
+          "id": 1,
+          "title": "GORDEN BLACKOUT SERAT PREMIUM IMPORT MODEL PLISKET",
+          "urlThumbnail": "https://images.tokopedia.net/img/cache/200-square/hDjmkQ/2023/6/29/bb0a894c-65aa-46bd-bc2b-5307a60bf8fb.jpg",
+          "price": 78500
+        }
+      ]
     }
   ]
 }

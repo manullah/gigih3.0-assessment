@@ -1,0 +1,78 @@
+{
+  "videos": [
+    {
+      "id": 1,
+      "title": "🤩🤍Celana Premium Banyak Brand🤍🤩",
+      "shop": "win2winshop",
+      "urlThumbnail": "https://images.tokopedia.net/img/cache/296/jJtrdn/2023/7/27/3f9ee9cb-c947-440f-9c05-e6415bf353b6.jpg?ect=4g",
+      "urlVideo": "https://www.youtube.com/embed/Yuetucr4AYg",
+      "badges": ["Live", "Official Store"],
+      "viewed": 850,
+      "products": [
+        {
+          "id": 1,
+          "title": "Celana Chino Pria Panjang Premium Distro",
+          "urlThumbnail": "https://images.tokopedia.net/img/cache/200-square/VqbcmM/2022/12/29/0da24c04-3f57-46a5-ad7e-e29f3a991315.jpg",
+          "price": 119000
+        },
+        {
+          "id": 2,
+          "title": "CELANA PANJANG KATUN PRIA PREMIUM",
+          "urlThumbnail": "https://images.tokopedia.net/img/cache/200-square/VqbcmM/2023/5/7/e74d534b-40e0-4f57-b341-73a3fece848c.jpg",
+          "price": 275000
+        },
+        {
+          "id": 3,
+          "title": "Celana Pendek Badminton Marvell Premium Orlando Black",
+          "urlThumbnail": "https://images.tokopedia.net/img/cache/200-square/product-1/2019/9/24/11292/11292_d0a68c90-2207-4d05-a6db-a1f8e3a286e3_640_640.jpg",
+          "price": 99000
+        }
+      ],
+      "comments": []
+    },
+    {
+      "id": 2,
+      "title": "PAYDAY SALE DISC 90%",
+      "shop": "URBAN&CO OFFICIAL",
+      "urlThumbnail": "https://images.tokopedia.net/img/cache/296/jJtrdn/2023/7/27/c6dbfb99-515f-4b69-a35e-b69735006d3a.jpg?ect=4g",
+      "urlVideo": "",
+      "badges": ["Live"],
+      "viewed": 378,
+      "products": [],
+      "comments": []
+    },
+    {
+      "id": 3,
+      "title": "Males Mikir",
+      "shop": "Patroman Mall",
+      "urlThumbnail": "https://images.tokopedia.net/img/cache/296/jJtrdn/2023/7/25/de5c418d-e1cb-484d-81b1-2c64c191a1a7.jpg?ect=4g",
+      "urlVideo": "",
+      "badges": ["Explore"],
+      "viewed": 2,
+      "products": [],
+      "comments": []
+    },
+    {
+      "id": 4,
+      "title": "YAVA AKHIR BULAN SALE!",
+      "shop": "YAVA Official Store",
+      "urlThumbnail": "https://images.tokopedia.net/img/cache/296/jJtrdn/2023/7/24/7f704478-b596-453d-a6a2-1986095d7974.jpg?ect=4gg",
+      "urlVideo": "",
+      "badges": ["Upcoming"],
+      "viewed": 2,
+      "products": [],
+      "comments": []
+    },
+    {
+      "id": 5,
+      "title": "GRATIS ONGKIR TERMURAH acesoris gorden",
+      "shop": "BESI GORDEN MURAH",
+      "urlThumbnail": "https://images.tokopedia.net/img/generator/LScDrk/f6639884093104e3acdf890349561f84.jpg?ect=4g",
+      "urlVideo": "",
+      "badges": ["Terbaru"],
+      "viewed": 90,
+      "products": [],
+      "comments": []
+    }
+  ]
+}

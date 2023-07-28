@@ -1,19 +1,22 @@
 import { useParams } from "react-router-dom";
 import { useFetchVideDetail } from "../../modules/videos/hooks";
 import {
-  MessageForm,
+  CommentForm,
   CommentList,
   ProductList,
   LoginForm,
 } from "../../components";
 import { useState } from "react";
+import { useCommentSocket } from "../../modules/comments/hooks";
 
 const DetailPage = () => {
   const { videoId } = useParams();
+  const VIDEO_ID = videoId as unknown as number;
 
   const [username, setUsername] = useState("");
 
-  const { video, loading } = useFetchVideDetail(videoId as unknown as number);
+  const { video, loading } = useFetchVideDetail(VIDEO_ID);
+  const { receivedComment } = useCommentSocket();
 
   if (loading) {
     return <div className="text-sm">Loading...</div>;
@@ -45,19 +48,21 @@ const DetailPage = () => {
         </div>
 
         <div className="md:col-span-1 bg-gray-800 p-4 rounded-xl">
-          <div className="flex flex-col gap-4 h-full">
+          <div className="flex flex-col gap-4 h-full max-h-full">
             <div className="flex justify-end">
               <LoginForm username={username} setUsername={setUsername} />
             </div>
             <div className="flex-1">
-              <CommentList username={username} />
+              <div className="overflow-y-auto" style={{ maxHeight: "83vh" }}>
+                <CommentList
+                  username={username}
+                  listComment={receivedComment.filter(
+                    (item) => item.videoId === VIDEO_ID
+                  )}
+                />
+              </div>
             </div>
-            <MessageForm
-              username={username}
-              onSuccess={(messsage) => {
-                console.log("message ", messsage);
-              }}
-            />
+            <CommentForm username={username} videoId={VIDEO_ID} />
           </div>
         </div>
       </div>

@@ -1,9 +1,11 @@
 type MessageBubleCard = {
   isSender?: boolean;
+  text: string;
+  username: string;
 };
 
 export const MessageBubleCard: React.FC<MessageBubleCard> = (props) => {
-  const { isSender } = props;
+  const { isSender, text, username } = props;
 
   return (
     <div
@@ -13,12 +15,8 @@ export const MessageBubleCard: React.FC<MessageBubleCard> = (props) => {
           : "ml-auto bg-gray-700"
       }`}
     >
-      <p className="text-xs mb-1 text-gray-400 font-semibold">John Dow</p>
-      <p className="text-sm">
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ab beatae
-        assumenda ipsum recusandae quasi eius placeat ratione illo repellendus
-        nihil.
-      </p>
+      <p className="text-xs mb-1 text-gray-400 font-semibold">{username}</p>
+      <p className="text-sm">{text}</p>
     </div>
   );
 };

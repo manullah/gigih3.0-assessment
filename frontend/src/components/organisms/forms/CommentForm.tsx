@@ -1,19 +1,27 @@
 import { PaperAirplaneIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
+import { mySocket } from "../../../utils/socketio";
+import { TVideoResponse } from "../../../modules/videos/types/entities";
 
-type MessageFormProps = {
+type CommentFormProps = {
   username: string;
-  onSuccess?: (message: string) => void;
+  videoId: TVideoResponse["id"];
 };
 
-export const MessageForm: React.FC<MessageFormProps> = (props) => {
-  const { username, onSuccess } = props;
+export const CommentForm: React.FC<CommentFormProps> = (props) => {
+  const { username, videoId } = props;
 
   const [message, setMessage] = useState("");
 
   const onSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    onSuccess && onSuccess(message);
+
+    mySocket.emit("comment", {
+      username,
+      videoId,
+      comment: message,
+    });
+    setMessage("");
   };
 
   return (
@@ -23,10 +31,14 @@ export const MessageForm: React.FC<MessageFormProps> = (props) => {
         placeholder={
           username ? "Type comment..." : "Login first on the top right"
         }
+        value={message}
         onChange={(value) => setMessage(value.currentTarget.value)}
         disabled={!username}
       />
-      <button className="bg-green-600 px-4 rounded-lg hover:bg-green-700 hover:shadow-lg">
+      <button
+        type="submit"
+        className="bg-green-600 px-4 rounded-lg hover:bg-green-700 hover:shadow-lg"
+      >
         <PaperAirplaneIcon className="w-4" />
       </button>
     </form>

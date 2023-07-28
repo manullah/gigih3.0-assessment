@@ -13,8 +13,8 @@ export const LoginForm: React.FC<LoginFormProps> = (props) => {
   return (
     <>
       {username ? (
-        <div className="flex gap-2 items-center">
-          <p>{username}</p>
+        <div className="flex gap-4 items-center">
+          <p className="text-sm">{username}</p>
           <Avatar url="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" />
           <button
             className="p-2 text-xs bg-red-400 ml-2 rounded-lg"

@@ -1,6 +1,12 @@
 import { MessageBubleCard } from "../..";
 
-export const CommentList = () => {
+type CommentListProps = {
+  username: string;
+};
+
+export const CommentList: React.FC<CommentListProps> = (props) => {
+  const { username } = props;
+
   return (
     <div className="flex flex-col justify-end gap-2 h-full">
       <MessageBubleCard />

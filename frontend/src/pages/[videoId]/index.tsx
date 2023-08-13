@@ -1,28 +1,35 @@
-import { useParams } from "react-router-dom";
-import { useFetchVideDetail } from "../../modules/videos/hooks";
+import { useParams } from 'react-router-dom';
 import {
   CommentForm,
   CommentList,
   ProductList,
   LoginForm,
-} from "../../components";
-import { useState } from "react";
-import { useCommentSocket } from "../../modules/comments/hooks";
+} from '../../components';
+import { useState } from 'react';
+import { useGetCommentList } from '../../services/comments/hooks';
+import { useGetVideoDetails } from '../../services/videos/hook';
 
 const DetailPage = () => {
   const { videoId } = useParams();
-  const VIDEO_ID = videoId as unknown as number;
+  const VIDEO_ID = videoId as unknown as string;
 
-  const [username, setUsername] = useState("");
+  const [username, setUsername] = useState('');
 
-  const { video, loading } = useFetchVideDetail(VIDEO_ID);
-  const { receivedComment } = useCommentSocket();
+  const videoDetailHook = useGetVideoDetails(VIDEO_ID);
+  const commentListHook = useGetCommentList(
+    {
+      video: VIDEO_ID,
+    },
+    {
+      enabled: !!VIDEO_ID,
+    }
+  );
 
-  if (loading) {
+  if (videoDetailHook.isFetching) {
     return <div className="text-sm">Loading...</div>;
   }
 
-  if (!video) {
+  if (!videoDetailHook.data?.data) {
     return <div className="text-sm">No Data.</div>;
   }
 
@@ -31,15 +38,15 @@ const DetailPage = () => {
       <div className="grid md:grid-cols-4 gap-4 h-full">
         <div className="md:col-span-1 bg-gray-800 p-4 rounded-xl">
           <h4 className="mb-6 text-lg font-semibold w-fit">List Product</h4>
-          <ProductList products={video.products} />
+          <ProductList products={videoDetailHook.data.data.products} />
         </div>
 
         <div className="md:col-span-2 relative flex items-center justify-center">
-          {video.urlVideo ? (
+          {videoDetailHook.data.data.urlVideo ? (
             <iframe
               width="420"
               height="315"
-              src={video.urlVideo}
+              src={videoDetailHook.data.data.urlVideo}
               className="rounded-lg w-full object-contain absolute top-0 bottom-0 m-auto"
             ></iframe>
           ) : (
@@ -53,12 +60,10 @@ const DetailPage = () => {
               <LoginForm username={username} setUsername={setUsername} />
             </div>
             <div className="flex-1">
-              <div className="overflow-y-auto" style={{ maxHeight: "83vh" }}>
+              <div className="overflow-y-auto" style={{ maxHeight: '83vh' }}>
                 <CommentList
                   username={username}
-                  listComment={receivedComment.filter(
-                    (item) => item.videoId === VIDEO_ID
-                  )}
+                  listComment={commentListHook.data?.data || []}
                 />
               </div>
             </div>

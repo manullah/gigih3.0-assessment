@@ -1,12 +1,12 @@
-import { MessageBubleCard } from "../..";
-import { TCommentResponse } from "../../../modules/comments/entities";
+import { MessageBubleCard } from '../..';
+import { TCommentResponse } from '../../../services/comments/entities/response';
 
 type CommentListProps = {
   username: string;
   listComment: TCommentResponse[];
 };
 
-export const CommentList: React.FC<CommentListProps> = (props) => {
+export const CommentList: React.FC<CommentListProps> = props => {
   const { username, listComment } = props;
 
   return (
@@ -15,8 +15,8 @@ export const CommentList: React.FC<CommentListProps> = (props) => {
         <MessageBubleCard
           key={index}
           text={item.comment}
-          username={item.username}
-          isSender={item.username === username}
+          username={item.user.username}
+          isSender={item.user.username === username}
         />
       ))}
     </div>

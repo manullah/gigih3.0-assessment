@@ -1,13 +1,13 @@
-import { TProductResponse } from "../../../modules/products/entities";
-import { convertIdr } from "../../../utils/string";
+import { TProductResponse } from '../../../services/products/entities/response';
+import { convertIdr } from '../../../utils/string';
 
 type ProductCardProps = {
-  title: TProductResponse["title"];
-  urlThumbnail: TProductResponse["urlThumbnail"];
-  price: TProductResponse["price"];
+  title: TProductResponse['title'];
+  urlThumbnail: TProductResponse['urlThumbnail'];
+  price: TProductResponse['price'];
 };
 
-export const ProductCard: React.FC<ProductCardProps> = (props) => {
+export const ProductCard: React.FC<ProductCardProps> = props => {
   const { title, urlThumbnail, price } = props;
 
   return (

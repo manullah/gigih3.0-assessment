@@ -1,27 +1,27 @@
-import { PaperAirplaneIcon } from "@heroicons/react/24/outline";
-import { useState } from "react";
-import { mySocket } from "../../../utils/socketio";
-import { TVideoResponse } from "../../../modules/videos/types/entities";
+import { PaperAirplaneIcon } from '@heroicons/react/24/outline';
+import { useState } from 'react';
+import { mySocket } from '../../../utils/socketio';
+import { TVideoResponse } from '../../../services/videos/entities/response';
 
 type CommentFormProps = {
   username: string;
-  videoId: TVideoResponse["id"];
+  videoId: TVideoResponse['id'];
 };
 
-export const CommentForm: React.FC<CommentFormProps> = (props) => {
+export const CommentForm: React.FC<CommentFormProps> = props => {
   const { username, videoId } = props;
 
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState('');
 
   const onSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
-    mySocket.emit("comment", {
+    mySocket.emit('comment', {
       username,
       videoId,
       comment: message,
     });
-    setMessage("");
+    setMessage('');
   };
 
   return (
@@ -29,10 +29,10 @@ export const CommentForm: React.FC<CommentFormProps> = (props) => {
       <input
         className="bg-gray-700 border-none w-full rounded-lg text-xs h-10"
         placeholder={
-          username ? "Type comment..." : "Login first on the top right"
+          username ? 'Type comment...' : 'Login first on the top right'
         }
         value={message}
-        onChange={(value) => setMessage(value.currentTarget.value)}
+        onChange={value => setMessage(value.currentTarget.value)}
         disabled={!username}
       />
       <button

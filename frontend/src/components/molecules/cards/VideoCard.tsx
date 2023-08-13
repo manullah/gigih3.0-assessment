@@ -1,16 +1,16 @@
-import { EyeIcon } from "@heroicons/react/20/solid";
-import { TVideoResponse } from "../../../modules/videos/types/entities";
+import { EyeIcon } from '@heroicons/react/20/solid';
+import { TVideoResponse } from '../../../services/videos/entities/response';
 
 type VideoCardProps = {
-  title: TVideoResponse["title"];
-  viewed: TVideoResponse["viewed"];
-  badges: TVideoResponse["badges"];
-  shop: TVideoResponse["shop"];
-  urlThumbnail: TVideoResponse["urlThumbnail"];
+  title: TVideoResponse['title'];
+  viewed: TVideoResponse['viewed'];
+  badges: TVideoResponse['badges'][number]['name'][];
+  shop: TVideoResponse['shop'];
+  urlThumbnail: TVideoResponse['urlThumbnail'];
   onClick?: () => void;
 };
 
-export const VideoCard: React.FC<VideoCardProps> = (props) => {
+export const VideoCard: React.FC<VideoCardProps> = props => {
   const { title, viewed, urlThumbnail, badges, shop, onClick } = props;
 
   return (
@@ -19,7 +19,7 @@ export const VideoCard: React.FC<VideoCardProps> = (props) => {
 
       <div className="absolute top-0 p-2">
         <div className="flex gap-2">
-          {badges.includes("Live") ? (
+          {badges.includes('Live') ? (
             <span className="inline-flex items-center rounded-md bg-red-500 px-1.5 py-0.5 text-xs font-bold text-white">
               Live
             </span>

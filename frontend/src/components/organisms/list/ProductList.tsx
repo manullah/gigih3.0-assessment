@@ -1,12 +1,12 @@
-import { NavLink } from "react-router-dom";
-import { ProductCard } from "../..";
-import { TProductResponse } from "../../../modules/products/entities";
+import { NavLink } from 'react-router-dom';
+import { ProductCard } from '../..';
+import { TProductResponse } from '../../../services/products/entities/response';
 
 export type ProductListProps = {
   products: TProductResponse[];
 };
 
-export const ProductList: React.FC<ProductListProps> = (props) => {
+export const ProductList: React.FC<ProductListProps> = props => {
   const { products = [] } = props;
 
   if (products.length === 0) {
@@ -15,8 +15,8 @@ export const ProductList: React.FC<ProductListProps> = (props) => {
 
   return (
     <div className="grid grid-cols-2 gap-4">
-      {products.map((item) => (
-        <NavLink key={item.id} to="https://tokopedia.com/">
+      {products.map(item => (
+        <NavLink key={item._id} to={item.linkProduct}>
           <ProductCard
             title={item.title}
             urlThumbnail={item.urlThumbnail}

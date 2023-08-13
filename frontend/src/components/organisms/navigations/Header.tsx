@@ -1,10 +1,11 @@
-import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
+import { MagnifyingGlassIcon } from '@heroicons/react/20/solid';
+import { debounce } from 'lodash';
 
 type HeaderProps = {
   onSearch?: (value: string) => void;
 };
 
-export const Header: React.FC<HeaderProps> = (props) => {
+export const Header: React.FC<HeaderProps> = props => {
   const { onSearch } = props;
 
   return (
@@ -35,7 +36,11 @@ export const Header: React.FC<HeaderProps> = (props) => {
                 placeholder="Search..."
                 type="search"
                 name="search"
-                onChange={(value) => onSearch(value.currentTarget.value)}
+                onChange={debounce(
+                  (e: { target: { value: string } }) =>
+                    onSearch(e.target.value),
+                  500
+                )}
               />
             </div>
           )}

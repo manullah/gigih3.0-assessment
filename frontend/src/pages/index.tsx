@@ -1,10 +1,19 @@
-import { useState } from "react";
-import { Badge, Header, VideoList } from "../components";
-import { BADGE_LIST } from "../modules/videos/constants";
+import { useState } from 'react';
+import { Badge, Header, VideoList } from '../components';
+import { useGetBadgeList } from '../services/badges/hook';
 
 const IndexPage = () => {
-  const [badgeActived, setBadgeActived] = useState("Live");
-  const [searchActived, setSearchActived] = useState("");
+  const [badgeActived, setBadgeActived] = useState('');
+  const [searchActived, setSearchActived] = useState('');
+
+  const badgeListHook = useGetBadgeList(
+    {},
+    {
+      onSuccess: data => {
+        setBadgeActived(data.data[0]._id);
+      },
+    }
+  );
 
   return (
     <>
@@ -12,12 +21,12 @@ const IndexPage = () => {
 
       <div className="p-4">
         <div className="flex flex-wrap gap-2 mb-6">
-          {BADGE_LIST.map((item) => (
+          {badgeListHook.data?.data.map(item => (
             <Badge
-              key={item}
-              title={item}
-              isActived={item === badgeActived}
-              onClick={setBadgeActived}
+              key={item._id}
+              title={item.name}
+              isActived={item._id === badgeActived}
+              onClick={() => setBadgeActived(item._id)}
             />
           ))}
         </div>

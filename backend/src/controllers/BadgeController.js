@@ -1,10 +1,7 @@
 const DatabaseModel = require('../models');
 
 const setPayload = req => ({
-  linkProduct: req.body.linkProduct,
-  title: req.body.title,
-  price: req.body.price,
-  video: req.body.video,
+  name: req.body.name,
 });
 
 const Controller = {
@@ -12,17 +9,10 @@ const Controller = {
     const payload = setPayload(req);
 
     try {
-      const product = await DatabaseModel.Producut.create(payload);
-      const video = await await Promise.allSettled([
-        DatabaseModel.Video.findByIdAndUpdate(
-          req.body.video,
-          { $push: { products: product } },
-          { new: true, useFindAndModify: false }
-        ),
-      ]);
+      const badge = await DatabaseModel.Badge.create(payload);
 
       res.status(201).json({
-        data: product,
+        data: badge,
       });
     } catch (err) {
       res.status(400).json({
@@ -32,10 +22,10 @@ const Controller = {
   },
   getAll: async (req, res) => {
     try {
-      const products = await DatabaseModel.Producut.find();
+      const badges = await DatabaseModel.Badge.find().populate(['videos']);
 
       res.status(200).json({
-        data: products,
+        data: badges,
       });
     } catch (err) {
       res.status(500).json({
@@ -47,9 +37,9 @@ const Controller = {
     const { id } = req.params;
 
     try {
-      const product = await DatabaseModel.Producut.findById(id);
+      const badge = await DatabaseModel.Badge.findById(id);
 
-      res.status(200).json({ data: product });
+      res.status(200).json({ data: badge });
     } catch (err) {
       res.status(400).json({
         message: err.message,
@@ -61,13 +51,11 @@ const Controller = {
     const payload = setPayload(req);
 
     try {
-      const product = await DatabaseModel.Producut.findByIdAndUpdate(
-        id,
-        payload,
-        { new: true }
-      );
+      const badge = await DatabaseModel.Badge.findByIdAndUpdate(id, payload, {
+        new: true,
+      });
 
-      res.status(200).json({ data: product });
+      res.status(200).json({ data: badge });
     } catch (err) {
       res.status(400).json({
         message: err.message,
@@ -78,9 +66,9 @@ const Controller = {
     const { id } = req.params;
 
     try {
-      const product = await DatabaseModel.Producut.findByIdAndDelete(id);
+      const badge = await DatabaseModel.Badge.findByIdAndDelete(id);
 
-      res.status(200).json({ message: `${product._id} has been deleted` });
+      res.status(200).json({ message: `${badge._id} has been deleted` });
     } catch (err) {
       res.status(400).json({
         message: err.message,

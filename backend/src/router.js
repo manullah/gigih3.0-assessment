@@ -8,6 +8,7 @@ const VideoController = require('./controllers/VideoController');
 const ProductController = require('./controllers/ProductController');
 const UserController = require('./controllers/UserController');
 const CommentController = require('./controllers/CommentController');
+const BadgeController = require('./controllers/BadgeController');
 
 module.exports = io => {
   const commentControllerWithIo = CommentController(io);
@@ -35,6 +36,12 @@ module.exports = io => {
   router.get('/comments/:id', commentControllerWithIo.getDetail);
   router.patch('/comments/:id', commentControllerWithIo.update);
   router.delete('/comments/:id', commentControllerWithIo.delete);
+
+  router.post('/badges', BadgeController.create);
+  router.get('/badges', BadgeController.getAll);
+  router.get('/badges/:id', BadgeController.getDetail);
+  router.patch('/badges/:id', BadgeController.update);
+  router.delete('/badges/:id', BadgeController.delete);
 
   return router;
 };

@@ -1,7 +1,12 @@
 const DatabaseModel = require('../models');
 
 const setPayload = req => ({
+  title: req.body.title,
+  shop: req.body.shop,
   urlThumbnail: req.body.urlThumbnail,
+  urlVideo: req.body.urlVideo,
+  viewed: req.body.viewed,
+  badge: req.body.badge,
 });
 
 const Controller = {
@@ -10,6 +15,13 @@ const Controller = {
 
     try {
       const video = await DatabaseModel.Video.create(payload);
+      const result = await Promise.allSettled([
+        DatabaseModel.Badge.findByIdAndUpdate(
+          req.body.badge,
+          { $push: { badges: badge } },
+          { new: true, useFindAndModify: false }
+        ),
+      ]);
 
       res.status(201).json({
         data: video,

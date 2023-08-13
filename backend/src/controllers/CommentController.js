@@ -1,11 +1,14 @@
-const DatabaseModel = require("../models");
+const dayjs = require('dayjs');
+const DatabaseModel = require('../models');
 
-const setPayload = (req) => ({
-  text: req.body.text,
-  datetime: String(new Date()),
+const setPayload = req => ({
+  comment: req.body.comment,
+  user: req.body.user,
+  video: req.body.video,
+  datetime: dayjs().format('YYYY-MM-DD HH:mm:ss'),
 });
 
-const Controller = {
+module.exports = io => ({
   create: async (req, res) => {
     const payload = setPayload(req);
 
@@ -13,20 +16,18 @@ const Controller = {
       const comment = await DatabaseModel.Comment.create(payload);
       const result = await Promise.allSettled([
         DatabaseModel.User.findByIdAndUpdate(
-          req.body.userId,
-          {
-            $push: { comments: comment },
-          },
+          req.body.user,
+          { $push: { comments: comment } },
           { new: true, useFindAndModify: false }
         ),
         DatabaseModel.Video.findByIdAndUpdate(
-          req.body.videoId,
-          {
-            $push: { comments: comment },
-          },
+          req.body.video,
+          { $push: { comments: comment } },
           { new: true, useFindAndModify: false }
         ),
       ]);
+
+      io.emit('comment', comment);
 
       res.status(201).json({
         data: comment,
@@ -71,9 +72,7 @@ const Controller = {
       const comment = await DatabaseModel.Comment.findByIdAndUpdate(
         id,
         payload,
-        {
-          new: true,
-        }
+        { new: true }
       );
 
       res.status(200).json({ data: comment });
@@ -96,6 +95,4 @@ const Controller = {
       });
     }
   },
-};
-
-module.exports = Controller;
+});

@@ -1,30 +1,24 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const schema = mongoose.Schema({
   comment: {
     type: String,
     required: true,
   },
-  timestamp: {
-    type: String,
-    required: true,
-  },
-  userId: {
-    type: String,
-    required: true,
-  },
-  videoId: {
+  datetime: {
     type: String,
     required: true,
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
+    ref: 'User',
+    required: true,
   },
   video: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Video",
+    ref: 'Video',
+    required: true,
   },
 });
 
-module.exports = mongoose.model("Comment", schema);
+module.exports = mongoose.model('Comment', schema);

@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const schema = mongoose.Schema({
   linkProduct: {
@@ -13,14 +13,11 @@ const schema = mongoose.Schema({
     required: true,
     type: Number,
   },
-  videoId: {
-    required: true,
-    type: String,
-  },
   video: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Video",
+    ref: 'Video',
+    required: true,
   },
 });
 
-module.exports = mongoose.model("Product", schema);
+module.exports = mongoose.model('Product', schema);

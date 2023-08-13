@@ -1,6 +1,6 @@
-const DatabaseModel = require("../models");
+const DatabaseModel = require('../models');
 
-const setPayload = (req) => ({
+const setPayload = req => ({
   urlThumbnail: req.body.urlThumbnail,
 });
 
@@ -22,10 +22,7 @@ const Controller = {
   },
   getAll: async (req, res) => {
     try {
-      const videos = await DatabaseModel.Video.find().populate([
-        "products",
-        "comments",
-      ]);
+      const videos = await DatabaseModel.Video.find().populate('comments');
 
       res.status(200).json({
         data: videos,

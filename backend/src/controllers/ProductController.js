@@ -1,9 +1,10 @@
-const DatabaseModel = require("../models");
+const DatabaseModel = require('../models');
 
-const setPayload = (req) => ({
+const setPayload = req => ({
   linkProduct: req.body.linkProduct,
   title: req.body.title,
   price: req.body.price,
+  video: req.body.video,
 });
 
 const Controller = {
@@ -13,10 +14,8 @@ const Controller = {
     try {
       const product = await DatabaseModel.Producut.create(payload);
       const video = await DatabaseModel.Video.findByIdAndUpdate(
-        req.body.videoId,
-        {
-          $push: { products: product },
-        },
+        req.body.video,
+        { $push: { products: product } },
         { new: true, useFindAndModify: false }
       );
 
@@ -65,7 +64,7 @@ const Controller = {
           new: true,
         }
       );
-      console.log("product, ", product);
+      console.log('product, ', product);
 
       res.status(200).json({ data: product });
     } catch (err) {

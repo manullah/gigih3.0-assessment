@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const schema = mongoose.Schema({
   urlThumbnail: {
@@ -8,15 +8,15 @@ const schema = mongoose.Schema({
   products: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Product",
+      ref: 'Product',
     },
   ],
   comments: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Comment",
+      ref: 'Comment',
     },
   ],
 });
 
-module.exports = mongoose.model("Video", schema);
+module.exports = mongoose.model('Video', schema);

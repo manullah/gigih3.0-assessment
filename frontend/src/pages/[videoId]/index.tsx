@@ -5,17 +5,10 @@ import {
   ProductList,
   LoginForm,
 } from '../../components';
-import { useState } from 'react';
 import { useGetVideoDetails } from '../../services/videos/hook';
-import {
-  Flex,
-  Grid,
-  Paper,
-  ScrollArea,
-  createStyles,
-  rem,
-} from '@mantine/core';
-import { TUserResponse } from '../../services/users/entities/response';
+import { Flex, Grid, Paper, createStyles, rem } from '@mantine/core';
+import { useGetCommentList } from '../../services/comments/hooks';
+import { useRef } from 'react';
 
 const useStyles = createStyles(theme => ({
   box: {
@@ -50,9 +43,26 @@ const DetailPage = () => {
 
   const { classes } = useStyles();
 
-  const [username, setUsername] = useState<TUserResponse | null>(null);
-
   const videoDetailHook = useGetVideoDetails(VIDEO_ID);
+
+  const commentListHook = useGetCommentList(
+    { video: VIDEO_ID },
+    {
+      enabled: !!VIDEO_ID,
+      onSuccess: () => {
+        setTimeout(() => {
+          if (viewport.current) {
+            viewport.current.scrollTo({
+              top: viewport.current.scrollHeight,
+              behavior: 'smooth',
+            });
+          }
+        }, 100);
+      },
+    }
+  );
+
+  const viewport = useRef<HTMLDivElement>(null);
 
   if (videoDetailHook.isFetching) {
     return <div>Loading...</div>;
@@ -83,17 +93,22 @@ const DetailPage = () => {
         <Grid.Col span={12} xl={3}>
           <Paper className={classes.box}>
             <Flex direction="column" gap={12} h="100%">
-              <LoginForm
-                username={username?.username}
-                setUsername={setUsername}
-              />
+              <LoginForm />
 
               <Paper className={classes.commentBox}>
-                <CommentList username={username?.username} />
+                <CommentList
+                  viewport={viewport}
+                  commentList={commentListHook.data?.data || []}
+                />
               </Paper>
 
               <Paper>
-                <CommentForm username={username?.username} videoId={VIDEO_ID} />
+                <CommentForm
+                  videoId={VIDEO_ID}
+                  onSuccess={() => {
+                    commentListHook.refetch();
+                  }}
+                />
               </Paper>
             </Flex>
           </Paper>

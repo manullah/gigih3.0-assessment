@@ -4,33 +4,40 @@ import { useState } from 'react';
 import { TUserResponse } from '../users/entities/response';
 
 export const useAuthSignin = () => {
+  const userHook = useLocalStorageUser();
+
   return useMutation(authSignin, {
     onSuccess: data => {
-      localStorage.setItem('auth', JSON.stringify(data.data));
+      userHook.saveUserToLocalStorage(data.data);
     },
   });
 };
 
-export const useAuth = () => {
-  const [user, setUser] = useState<TUserResponse | null>(null);
+export const useLocalStorageUser = () => {
+  // Initialize state with the user data from local storage
+  const [user, setUser] = useState<TUserResponse | null>(
+    localStorage.getItem('user')
+      ? JSON.parse(localStorage.getItem('user') || '')
+      : null
+  );
 
-  const setAuth = () => {
-    const auth = localStorage.getItem('auth');
-
-    if (auth) {
-      return JSON.parse(auth);
-    }
-
-    return null;
+  // Function to save user data to local storage
+  const saveUserToLocalStorage = (userData: TUserResponse) => {
+    localStorage.setItem('user', JSON.stringify(userData));
+    setUser(userData);
+    window.location.reload();
   };
 
-  const onSignOut = () => {
-    localStorage.removeItem('auth');
+  // Function to remove user data from local storage
+  const removeUserFromLocalStorage = () => {
+    localStorage.removeItem('user');
+    setUser(null);
+    window.location.reload();
   };
 
   return {
     user,
-    setAuth,
-    onSignOut,
+    saveUserToLocalStorage,
+    removeUserFromLocalStorage,
   };
 };

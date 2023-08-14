@@ -1,17 +1,21 @@
 import { Paper, Text, createStyles } from '@mantine/core';
+import { useLocalStorageUser } from '../../../services/auth/hook';
 
 const useStyles = createStyles(theme => ({}));
 
 type MessageBubleCard = {
-  isSender?: boolean;
   text: string;
   username: string;
 };
 
 export const MessageBubleCard: React.FC<MessageBubleCard> = props => {
-  const { isSender, text, username } = props;
+  const { text, username } = props;
 
   const { theme } = useStyles();
+
+  const userHook = useLocalStorageUser();
+
+  const isSender = (username: string) => username === userHook.user?.username;
 
   return (
     <Paper
@@ -19,7 +23,7 @@ export const MessageBubleCard: React.FC<MessageBubleCard> = props => {
       w={'75%'}
       radius="md"
       style={{
-        ...(isSender
+        ...(isSender(username)
           ? {
               backgroundColor: theme.colors.dark[9],
             }

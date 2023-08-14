@@ -10,18 +10,15 @@ import {
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { useForm } from '@mantine/form';
-import { useAuthSignin } from '../../../services/auth/hook';
+import {
+  useAuthSignin,
+  useLocalStorageUser,
+} from '../../../services/auth/hook';
 import { IconLogout } from '@tabler/icons-react';
-import { TUserResponse } from '../../../services/users/entities/response';
 
-type LoginFormProps = {
-  username?: string;
-  setUsername: (value: TUserResponse | null) => void;
-};
+type LoginFormProps = {};
 
-export const LoginForm: React.FC<LoginFormProps> = props => {
-  const { username, setUsername } = props;
-
+export const LoginForm: React.FC<LoginFormProps> = () => {
   const [opened, { open, close }] = useDisclosure(false);
 
   const form = useForm({
@@ -33,17 +30,19 @@ export const LoginForm: React.FC<LoginFormProps> = props => {
 
   const authSigninMutation = useAuthSignin();
 
+  const userHook = useLocalStorageUser();
+
   return (
     <>
       <Flex justify="end" align="center">
-        {username ? (
+        {userHook.user?.username ? (
           <Flex align="center" gap={12}>
             <Avatar color="cyan" radius="xl" />
-            <Text>{username}</Text>
+            <Text>{userHook.user?.username}</Text>
             <Button
               size="sm"
               onClick={() => {
-                setUsername(null);
+                userHook.removeUserFromLocalStorage();
               }}
             >
               <IconLogout size="1rem" />
@@ -65,8 +64,7 @@ export const LoginForm: React.FC<LoginFormProps> = props => {
                 password: values.password,
               },
               {
-                onSuccess: data => {
-                  setUsername(data.data);
+                onSuccess: () => {
                   form.reset();
                   close();
                 },

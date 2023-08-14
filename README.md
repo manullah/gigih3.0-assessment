@@ -1,6 +1,6 @@
 # Mid Term GIGIH 3.0 Assessment
 
-Task Description:
+## Task Description:
 
 ```
 # mid term
@@ -10,7 +10,7 @@ https://drive.google.com/file/d/1XyQKzmvsh2LufcBFgEiJyC19uB3N8DAM/view
 https://drive.google.com/file/d/1o5X8DVQG3gBxosnyz6ugGR4jPkTCBaZ3/view
 ```
 
-Dummy User
+## Dummy User
 
 ```
 # user 1
@@ -22,7 +22,7 @@ username -> user1
 password -> rahasia123
 ```
 
-Todo List
+## Todo List
 
 - [x] Add Api (badges, videos, products, comments, users, auth)
 - [x] Slicing the component

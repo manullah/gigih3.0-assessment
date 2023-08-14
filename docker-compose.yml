@@ -1,6 +1,6 @@
+version: '3.8'
 services:
   backend:
-    image: gigih-assessment/backend
     build:
       context: backend
       dockerfile: Dockerfile

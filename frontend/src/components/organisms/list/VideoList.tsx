@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { useGetVideoList } from '../../../services/videos/hook';
 import { VideoCard } from '../..';
+import { Grid } from '@mantine/core';
 
 type VideoListProps = {
   badgeActived: string;
@@ -16,26 +17,34 @@ export const VideoList: React.FC<VideoListProps> = props => {
   });
 
   if (videoListHook.isFetching) {
-    return <div className="text-sm">Loading...</div>;
+    return <div>Loading...</div>;
   }
 
   if (videoListHook.data?.data.length === 0) {
-    return <div className="text-sm">No Data.</div>;
+    return <div>No Data.</div>;
   }
 
   return (
-    <div className="grid grid-cols-2 gap-6 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 text-white">
-      {videoListHook.data?.data.map(item => (
-        <NavLink key={item._id} to={`/${item._id}`}>
-          <VideoCard
-            title={item.title}
-            badges={item.badges.map(item => item.name)}
-            urlThumbnail={item.urlThumbnail}
-            shop={item.shop}
-            viewed={item.viewed}
-          />
-        </NavLink>
-      ))}
-    </div>
+    <>
+      <Grid>
+        {videoListHook.data?.data.map(item => (
+          <Grid.Col span={6} sm={4} md={3} xl={2}>
+            <NavLink
+              key={item._id}
+              to={`/${item._id}`}
+              style={{ textDecoration: 'none' }}
+            >
+              <VideoCard
+                title={item.title}
+                badges={item.badges.map(item => item.name)}
+                urlThumbnail={item.urlThumbnail}
+                shop={item.shop}
+                viewed={item.viewed}
+              />
+            </NavLink>
+          </Grid.Col>
+        ))}
+      </Grid>
+    </>
   );
 };

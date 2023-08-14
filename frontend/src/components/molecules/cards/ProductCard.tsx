@@ -1,5 +1,25 @@
+import { Card, Image, Text, createStyles, rem } from '@mantine/core';
 import { TProductResponse } from '../../../services/products/entities/response';
 import { convertIdr } from '../../../utils/string';
+
+const useStyles = createStyles(theme => ({
+  card: {
+    backgroundColor:
+      theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
+  },
+
+  title: {
+    fontFamily: `Greycliff CF, ${theme.fontFamily}`,
+  },
+
+  footer: {
+    padding: `${theme.spacing.xs} ${theme.spacing.lg}`,
+    marginTop: theme.spacing.md,
+    borderTop: `${rem(1)} solid ${
+      theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[2]
+    }`,
+  },
+}));
 
 type ProductCardProps = {
   title: TProductResponse['title'];
@@ -10,22 +30,21 @@ type ProductCardProps = {
 export const ProductCard: React.FC<ProductCardProps> = props => {
   const { title, urlThumbnail, price } = props;
 
-  return (
-    <div className="bg-white rounded-lg shadow-lg cursor-pointer">
-      <img
-        src={urlThumbnail}
-        className="rounded-t-lg h-44 w-full object-cover"
-      />
+  const { classes } = useStyles();
 
-      <div className="py-3 px-2">
-        <p
-          className="text-gray-900 text-sm line-clamp-2 mb-1 font-light"
-          title={title}
-        >
-          {title}
-        </p>
-        <p className="text-gray-600 text-xs font-bold">{convertIdr(price)}</p>
-      </div>
-    </div>
+  return (
+    <Card withBorder radius="md" className={classes.card}>
+      <Card.Section mb="sm">
+        <Image src={urlThumbnail} alt={title} height={180} />
+      </Card.Section>
+
+      <Text fw={500} className={classes.title} mt="xs" lineClamp={2} size="sm">
+        {title}
+      </Text>
+
+      <Text size="lg" fw={700} mt="xs">
+        {convertIdr(price)}
+      </Text>
+    </Card>
   );
 };

@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { ProductCard } from '../..';
 import { TProductResponse } from '../../../services/products/entities/response';
+import { SimpleGrid } from '@mantine/core';
 
 export type ProductListProps = {
   products: TProductResponse[];
@@ -10,13 +11,17 @@ export const ProductList: React.FC<ProductListProps> = props => {
   const { products = [] } = props;
 
   if (products.length === 0) {
-    return <div className="text-sm">No Data.</div>;
+    return <div>No Data.</div>;
   }
 
   return (
-    <div className="grid grid-cols-2 gap-4">
+    <SimpleGrid cols={2}>
       {products.map(item => (
-        <NavLink key={item._id} to={item.linkProduct}>
+        <NavLink
+          key={item._id}
+          to={item.linkProduct}
+          style={{ textDecoration: 'none' }}
+        >
           <ProductCard
             title={item.title}
             urlThumbnail={item.urlThumbnail}
@@ -24,6 +29,6 @@ export const ProductList: React.FC<ProductListProps> = props => {
           />
         </NavLink>
       ))}
-    </div>
+    </SimpleGrid>
   );
 };

@@ -1,22 +1,38 @@
+import { Paper, Text, createStyles } from '@mantine/core';
+
+const useStyles = createStyles(theme => ({}));
+
 type MessageBubleCard = {
   isSender?: boolean;
   text: string;
   username: string;
 };
 
-export const MessageBubleCard: React.FC<MessageBubleCard> = (props) => {
+export const MessageBubleCard: React.FC<MessageBubleCard> = props => {
   const { isSender, text, username } = props;
 
+  const { theme } = useStyles();
+
   return (
-    <div
-      className={`px-3 py-2 w-3/4 rounded-lg ${
-        isSender
-          ? "bg-gray-900/50 border border-gray-600"
-          : "ml-auto bg-gray-700"
-      }`}
+    <Paper
+      p={16}
+      w={'75%'}
+      radius="md"
+      style={{
+        ...(isSender
+          ? {
+              backgroundColor: theme.colors.dark[9],
+            }
+          : {
+              marginLeft: 'auto',
+              backgroundColor: theme.colors.dark[6],
+            }),
+      }}
     >
-      <p className="text-xs mb-1 text-gray-400 font-semibold">{username}</p>
-      <p className="text-sm">{text}</p>
-    </div>
+      <Text size="xs" mb={4} fw={900}>
+        {username}
+      </Text>
+      <Text size="sm">{text}</Text>
+    </Paper>
   );
 };

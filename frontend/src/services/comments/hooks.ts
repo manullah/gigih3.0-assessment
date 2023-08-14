@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import { mySocket } from '../../utils/socketio';
 import { TCommentResponse } from './entities/response';
 import { TCommentParams } from './entities/request';
-import { UseQueryOptions, useQuery } from 'react-query';
+import { UseQueryOptions, useMutation, useQuery } from 'react-query';
 import { TResponse } from '../../utils/entities/response';
-import { getCommentList } from './api';
+import { getCommentList, postComment } from './api';
 
 export const useGetCommentList = (
   params: TCommentParams,
@@ -15,6 +15,10 @@ export const useGetCommentList = (
     queryFn: () => getCommentList(params),
     ...options,
   });
+};
+
+export const usePostComment = () => {
+  return useMutation(postComment);
 };
 
 export const useCommentSocket = () => {

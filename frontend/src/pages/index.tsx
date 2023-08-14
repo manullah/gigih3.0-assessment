@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { Badge, Header, VideoList } from '../components';
+import { Header, VideoList } from '../components';
 import { useGetBadgeList } from '../services/badges/hook';
+import { Button, Group, Paper } from '@mantine/core';
 
 const IndexPage = () => {
   const [badgeActived, setBadgeActived] = useState('');
@@ -19,20 +20,23 @@ const IndexPage = () => {
     <>
       <Header onSearch={setSearchActived} />
 
-      <div className="p-4">
-        <div className="flex flex-wrap gap-2 mb-6">
+      <Paper p={16}>
+        <Group mb={32}>
           {badgeListHook.data?.data.map(item => (
-            <Badge
+            <Button
               key={item._id}
-              title={item.name}
-              isActived={item._id === badgeActived}
+              variant={item._id === badgeActived ? 'filled' : 'outline'}
+              size="xs"
+              radius="xl"
               onClick={() => setBadgeActived(item._id)}
-            />
+            >
+              {item.name}
+            </Button>
           ))}
-        </div>
+        </Group>
 
         <VideoList badgeActived={badgeActived} searchActived={searchActived} />
-      </div>
+      </Paper>
     </>
   );
 };

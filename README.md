@@ -1,4 +1,4 @@
-# Mid Term GIGIH 3.0 Assessment
+# GIGIH 3.0 Assessment
 
 ## Task Description:
 

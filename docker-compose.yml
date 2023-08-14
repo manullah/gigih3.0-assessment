@@ -1,0 +1,7 @@
+services:
+  gigih-assessment-backend:
+    image: gigih-assessment-backend:latest
+    env_file:
+      - ./backend/.env
+    ports:
+      - '3000:3000'

@@ -8,7 +8,8 @@ import {
 import { useGetVideoDetails } from '../../services/videos/hook';
 import { Flex, Grid, Paper, createStyles, rem } from '@mantine/core';
 import { useGetCommentList } from '../../services/comments/hooks';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
+import { mySocket } from '../../utils/socketio';
 
 const useStyles = createStyles(theme => ({
   box: {
@@ -45,6 +46,8 @@ const DetailPage = () => {
 
   const videoDetailHook = useGetVideoDetails(VIDEO_ID);
 
+  const viewport = useRef<HTMLDivElement>(null);
+
   const commentListHook = useGetCommentList(
     { video: VIDEO_ID },
     {
@@ -62,7 +65,12 @@ const DetailPage = () => {
     }
   );
 
-  const viewport = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    mySocket.on('comment', commentListHook.refetch);
+    return () => {
+      mySocket.off('comment', commentListHook.refetch);
+    };
+  }, []);
 
   if (videoDetailHook.isFetching) {
     return <div>Loading...</div>;

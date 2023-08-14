@@ -4,6 +4,7 @@ import { IconPlane } from '@tabler/icons-react';
 import { useForm } from '@mantine/form';
 import { usePostComment } from '../../../services/comments/hooks';
 import { useLocalStorageUser } from '../../../services/auth/hook';
+import { mySocket } from '../../../utils/socketio';
 
 type CommentFormProps = {
   videoId: TVideoResponse['_id'];
@@ -33,9 +34,10 @@ export const CommentForm: React.FC<CommentFormProps> = props => {
             video: videoId,
           },
           {
-            onSuccess: () => {
+            onSuccess: data => {
               form.reset();
               onSuccess();
+              mySocket.emit('comment', data.data.comment);
             },
           }
         );

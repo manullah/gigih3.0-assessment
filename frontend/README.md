@@ -10,9 +10,6 @@ $ yarn install
 # Running the app
 
 ```bash
-# run the server for socket
-$ yarn dev:server
-
 # run the app
 $ yarn dev
 

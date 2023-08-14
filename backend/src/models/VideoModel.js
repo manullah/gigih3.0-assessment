@@ -21,11 +21,13 @@ const schema = mongoose.Schema({
     type: Number,
     required: true,
   },
-  badge: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Badge',
-    required: true,
-  },
+  badges: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Badge',
+      required: true,
+    },
+  ],
   products: [
     {
       type: mongoose.Schema.Types.ObjectId,

@@ -39,8 +39,20 @@ module.exports = io => ({
     }
   },
   getAll: async (req, res) => {
+    const { video } = req.query;
+    let query = {};
+
+    if (video) {
+      query.video = {
+        _id: video,
+      };
+    }
+
     try {
-      const comments = await DatabaseModel.Comment.find();
+      const comments = await DatabaseModel.Comment.find(query).populate([
+        'user',
+        'video',
+      ]);
 
       res.status(200).json({
         data: comments,
@@ -55,7 +67,10 @@ module.exports = io => ({
     const { id } = req.params;
 
     try {
-      const comment = await DatabaseModel.Comment.findById(id);
+      const comment = await DatabaseModel.Comment.findById(id).populate([
+        'user',
+        'video',
+      ]);
 
       res.status(200).json({ data: comment });
     } catch (err) {

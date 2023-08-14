@@ -9,6 +9,7 @@ const ProductController = require('./controllers/ProductController');
 const UserController = require('./controllers/UserController');
 const CommentController = require('./controllers/CommentController');
 const BadgeController = require('./controllers/BadgeController');
+const AuthController = require('./controllers/AuthController');
 
 module.exports = io => {
   const commentControllerWithIo = CommentController(io);
@@ -42,6 +43,8 @@ module.exports = io => {
   router.get('/badges/:id', BadgeController.getDetail);
   router.patch('/badges/:id', BadgeController.update);
   router.delete('/badges/:id', BadgeController.delete);
+
+  router.post('/signin', AuthController.signin);
 
   return router;
 };

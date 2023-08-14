@@ -5,6 +5,7 @@ const setPayload = req => ({
   title: req.body.title,
   price: req.body.price,
   video: req.body.video,
+  urlThumbnail: req.body.urlThumbnail,
 });
 
 const Controller = {

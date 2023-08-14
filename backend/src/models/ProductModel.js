@@ -13,6 +13,10 @@ const schema = mongoose.Schema({
     required: true,
     type: Number,
   },
+  urlThumbnail: {
+    required: true,
+    type: String,
+  },
   video: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Video',

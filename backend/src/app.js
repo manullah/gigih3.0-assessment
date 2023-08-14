@@ -22,6 +22,6 @@ const io = createSocket(server); // Initialize Socket.IO with the server
 
 app.use('/api/v1', router(io));
 
-app.listen(config.PORT, () => {
+server.listen(config.PORT, () => {
   console.log(`Server Started at ${config.PORT}`);
 });

@@ -1,7 +1,7 @@
 const socketIO = require('socket.io');
 const config = require('./config');
 
-function init(server) {
+module.exports = server => {
   const io = socketIO(server, {
     cors: {
       origin: [config.FRONTEND_URL],
@@ -22,6 +22,4 @@ function init(server) {
   });
 
   return io;
-}
-
-module.exports = init;
+};

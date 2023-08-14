@@ -6,7 +6,7 @@ const setPayload = req => ({
   urlThumbnail: req.body.urlThumbnail,
   urlVideo: req.body.urlVideo,
   viewed: req.body.viewed,
-  badge: req.body.badge,
+  badges: req.body.badges,
 });
 
 const Controller = {
@@ -15,13 +15,6 @@ const Controller = {
 
     try {
       const video = await DatabaseModel.Video.create(payload);
-      const result = await Promise.allSettled([
-        DatabaseModel.Badge.findByIdAndUpdate(
-          req.body.badge,
-          { $push: { badges: badge } },
-          { new: true, useFindAndModify: false }
-        ),
-      ]);
 
       res.status(201).json({
         data: video,
@@ -33,8 +26,25 @@ const Controller = {
     }
   },
   getAll: async (req, res) => {
+    const { badge, search } = req.query;
+    let query = {};
+
+    if (badge) {
+      query.badges = {
+        $in: { _id: badge },
+      };
+    }
+
+    if (search) {
+      query.title = { $regex: search, $options: 'i' };
+    }
+
     try {
-      const videos = await DatabaseModel.Video.find().populate('comments');
+      const videos = await DatabaseModel.Video.find(query).populate([
+        'comments',
+        'products',
+        'badges',
+      ]);
 
       res.status(200).json({
         data: videos,
@@ -49,7 +59,11 @@ const Controller = {
     const { id } = req.params;
 
     try {
-      const video = await DatabaseModel.Video.findById(id);
+      const video = await DatabaseModel.Video.findById(id).populate([
+        'comments',
+        'products',
+        'badges',
+      ]);
 
       res.status(200).json({ data: video });
     } catch (err) {

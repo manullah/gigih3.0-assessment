@@ -1,7 +1,9 @@
 services:
-  gigih-assessment-backend:
+  backend:
+    image: gigih-assessment/backend
     build:
-      - ./backend/Dockerfile
+      context: backend
+      dockerfile: ./backend/Dockerfile
     env_file:
       - ./backend/.env
     ports:

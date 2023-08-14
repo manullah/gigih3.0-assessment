@@ -74,7 +74,7 @@ type VideoCardProps = {
 };
 
 export const VideoCard: React.FC<VideoCardProps> = props => {
-  const { title, viewed, urlThumbnail, badges, shop } = props;
+  const { title, viewed, urlThumbnail, shop } = props;
 
   const { classes, theme } = useStyles();
 

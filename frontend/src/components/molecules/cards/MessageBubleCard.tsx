@@ -1,7 +1,7 @@
 import { Paper, Text, createStyles } from '@mantine/core';
 import { useLocalStorageUser } from '../../../services/auth/hook';
 
-const useStyles = createStyles(theme => ({}));
+const useStyles = createStyles(() => ({}));
 
 type MessageBubleCard = {
   text: string;

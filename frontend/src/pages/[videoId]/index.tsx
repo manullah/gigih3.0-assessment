@@ -113,6 +113,7 @@ const DetailPage = () => {
               <Paper>
                 <CommentForm
                   videoId={VIDEO_ID}
+                  fetchingList={commentListHook.isFetching}
                   onSuccess={() => {
                     commentListHook.refetch();
                   }}

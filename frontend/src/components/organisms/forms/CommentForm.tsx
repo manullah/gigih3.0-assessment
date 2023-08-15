@@ -8,11 +8,12 @@ import { mySocket } from '../../../utils/socketio';
 
 type CommentFormProps = {
   videoId: TVideoResponse['_id'];
+  fetchingList: boolean;
   onSuccess: () => void;
 };
 
 export const CommentForm: React.FC<CommentFormProps> = props => {
-  const { videoId, onSuccess } = props;
+  const { videoId, fetchingList = false, onSuccess } = props;
 
   const form = useForm({
     initialValues: {
@@ -27,6 +28,8 @@ export const CommentForm: React.FC<CommentFormProps> = props => {
   return (
     <form
       onSubmit={form.onSubmit(values => {
+        if (postCommentMutation.isLoading || fetchingList) return;
+
         postCommentMutation.mutate(
           {
             comment: values.message,
@@ -54,7 +57,7 @@ export const CommentForm: React.FC<CommentFormProps> = props => {
           {...form.getInputProps('message')}
           disabled={!userHook.user?.username}
         />
-        <Button>
+        <Button loading={postCommentMutation.isLoading}>
           <IconPlane size="1rem" />
         </Button>
       </Flex>

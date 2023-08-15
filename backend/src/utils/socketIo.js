@@ -4,7 +4,11 @@ const config = require('./config');
 module.exports = server => {
   const io = socketIO(server, {
     cors: {
-      origin: [config.FRONTEND_URL],
+      origin: [
+        config.FRONTEND_URL,
+        'http://127.0.0.1:5173',
+        'http://localhost:5173',
+      ],
       methods: ['GET', 'POST'],
     },
   });

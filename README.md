@@ -38,4 +38,9 @@ Backend -> https://sxbzv9pixf.ap-southeast-2.awsapprunner.com
 
 Frontend -> https://b3mduqzf3g.ap-southeast-2.awsapprunner.com
 
-\*the deployment still issues
+\*the frontend deployment is still issues you can run locally and use this .env.local
+
+```bash
+VITE_BASE_URL=http://localhost:5173
+VITE_API_URL=https://sxbzv9pixf.ap-southeast-2.awsapprunner.com
+```

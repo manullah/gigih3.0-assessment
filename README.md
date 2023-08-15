@@ -29,3 +29,11 @@ password -> rahasia123
 - [x] Add user login
 - [x] Add search the videos
 - [x] Realtime comment with socket io
+
+## Deployment
+
+Host
+
+Backend -> https://sxbzv9pixf.ap-southeast-2.awsapprunner.com
+
+Frontend -> https://b3mduqzf3g.ap-southeast-2.awsapprunner.com

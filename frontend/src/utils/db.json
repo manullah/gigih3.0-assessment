@@ -6,8 +6,8 @@
       "shop": "win2winshop",
       "urlThumbnail": "https://images.tokopedia.net/img/cache/296/jJtrdn/2023/7/27/3f9ee9cb-c947-440f-9c05-e6415bf353b6.jpg?ect=4g",
       "urlVideo": "https://www.youtube.com/embed/Yuetucr4AYg",
-      "badges": ["Live", "Official Store"],
       "viewed": 850,
+      "badges": ["Live", "Official Store"],
       "products": [
         {
           "id": 1,
@@ -35,8 +35,8 @@
       "shop": "URBAN&CO OFFICIAL",
       "urlThumbnail": "https://images.tokopedia.net/img/cache/296/jJtrdn/2023/7/27/c6dbfb99-515f-4b69-a35e-b69735006d3a.jpg?ect=4g",
       "urlVideo": "https://www.youtube.com/embed/KMN544KkIKQ",
-      "badges": ["Live"],
       "viewed": 378,
+      "badges": ["Live"],
       "products": [
         {
           "id": 1,
@@ -52,8 +52,8 @@
       "shop": "Patroman Mall",
       "urlThumbnail": "https://images.tokopedia.net/img/cache/296/jJtrdn/2023/7/25/de5c418d-e1cb-484d-81b1-2c64c191a1a7.jpg?ect=4g",
       "urlVideo": "https://www.youtube.com/embed/b94lcCd-ovw",
-      "badges": ["Explore"],
       "viewed": 2,
+      "badges": ["Explore"],
       "products": []
     },
     {
@@ -62,8 +62,8 @@
       "shop": "YAVA Official Store",
       "urlThumbnail": "https://images.tokopedia.net/img/cache/296/jJtrdn/2023/7/24/7f704478-b596-453d-a6a2-1986095d7974.jpg?ect=4gg",
       "urlVideo": "https://www.youtube.com/embed/xcZgVabAX3o",
-      "badges": ["Upcoming"],
       "viewed": 2,
+      "badges": ["Upcoming"],
       "products": [
         {
           "id": 1,
@@ -85,8 +85,8 @@
       "shop": "BESI GORDEN MURAH",
       "urlThumbnail": "https://images.tokopedia.net/img/generator/LScDrk/f6639884093104e3acdf890349561f84.jpg?ect=4g",
       "urlVideo": "https://www.youtube.com/embed/T1yumpTM_mA",
-      "badges": ["Terbaru"],
       "viewed": 90,
+      "badges": ["Terbaru"],
       "products": [
         {
           "id": 1,

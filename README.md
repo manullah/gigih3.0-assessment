@@ -37,3 +37,5 @@ Host
 Backend -> https://sxbzv9pixf.ap-southeast-2.awsapprunner.com
 
 Frontend -> https://b3mduqzf3g.ap-southeast-2.awsapprunner.com
+
+\*the deployment still issues
